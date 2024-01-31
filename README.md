@@ -17,9 +17,9 @@ All of the analysis in this project was done utilizing PostgreSQL to query the d
 
 ## Visuals
 The visuals used in this project can be found within the following links: 
-Rockbuster Stealth Visuals
+
 (https://public.tableau.com/app/profile/christian.morant/viz/RockbusterStealthVisuals_17006021981630/GenreRevenue)
-Rockbuster Project
+
 (https://public.tableau.com/app/profile/christian.morant/viz/RockbusterProject_17001504474260/CustomerCountandPayment)
 
 
