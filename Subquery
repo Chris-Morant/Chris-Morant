@@ -20,3 +20,41 @@ GROUP BY c.customer_id, c.first_name, c.last_name, e.city, f.country
 ORDER BY total_amounta_paid DESC
 LIMIT 5
 ) AS average
+
+#SQL query for finding the countries where the top 5 customers reside
+
+SELECT d.country,
+ COUNT(DISTINCT a.customer_id) AS all_customer_count,
+ COUNT(top__customers) AS top_customer_count
+FROM customer A 
+INNER JOIN address B ON a.address_id = b.address_id
+INNER JOIN city C ON b.city_id = c.city_id
+INNER JOIN country D ON c.country_id = d.country_id
+LEFT JOIN(
+ SELECT 
+  c.customer_id,
+  c.first_name,
+  c.last_name,
+  e.city,
+  f.coutnry,
+  SUM(amount) AS pay_amount
+ FROM payment A
+ INNER JOIN rental B ON a.rental_id = b.rental_id
+ INNER JOIN customer C ON b.customer_id = c.customer_id
+ INNER JOIN address D ON c.address_id = d.address_id
+ INNER JOIN city E ON d.city_id = e.city_id
+ INNER JOIN country F ON e.country_id = f.country_id
+ WHERE city IN ('Aurora','Acua','Citrus Heights','Iwaki','Ambattur','Shamwei','So Leopold','Teboksary','Tianjin','Cianjur')
+ GROUP BY c.customer_id,
+          c.first_name,
+          c.last_name,
+          e.city,
+          f.country
+ ORDER BY pay_amount DESC
+ LIMIT5
+) top_5_customers ON a.customer_id = top_5_customers.customer_id
+GROUP BY d.country
+ORDER BY all_customer_count DESC
+LIMIT 5 
+          
+
