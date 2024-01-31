@@ -9,7 +9,7 @@ WITH average (customer, first_name, last_name, city, country, total_amount,paid)
                SUM(a.amount) AS total_amount_paid
               FROM payment A 
               INNER JOIN rental B ON A.rental_id = B.rental_id
-              INNER JOIN customer CON B.customer_id = C.customer_id
+              INNER JOIN customer C ON B.customer_id = C.customer_id
               INNER JOIN address D ON C.address_id = D.address_id
               INNER JOIN city E ON D.city_id = E.city_id
               INNER JOIN country F ON E.country_id = F.country_id
@@ -32,7 +32,7 @@ WITH top_5_customers (customer, first_name, last_name, city, country, total_amou
    SUM(a.amount) AS total_amount_paid
   FROM payment A 
   INNER JOIN rental B ON A.rental_id = B.rental_id
-  INNER JOIN customer CON B.customer_id = C.customer_id
+  INNER JOIN customer C ON B.customer_id = C.customer_id
   INNER JOIN address D ON C.address_id = D.address_id
   INNER JOIN city E ON D.city_id = E.city_id
   INNER JOIN country F ON E.country_id = F.country_id
